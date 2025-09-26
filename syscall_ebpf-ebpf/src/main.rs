@@ -21,6 +21,8 @@ fn increment_syscall_count(ctx: &ProbeContext, syscall_id: u32) {
                 .insert(&syscall_id, &1, 0)
                 .unwrap_or_else(|_| ());
         }
+
+        // FIXME: runtime error, cause by `info!`
         // info!(
         //     ctx,
         //     "Syscall {} called by PID {}",
@@ -29,6 +31,7 @@ fn increment_syscall_count(ctx: &ProbeContext, syscall_id: u32) {
         // );
     }
 }
+
 #[kprobe]
 pub fn read_counter(ctx: ProbeContext) -> u32 {
     // Use '0' as an arbitrary ID for the 'read' syscall
@@ -50,7 +53,6 @@ pub fn open_counter(ctx: ProbeContext) -> u32 {
     0
 }
 
-#[cfg(not(test))]
 #[panic_handler]
 fn panic(_info: &core::panic::PanicInfo) -> ! {
     loop {}

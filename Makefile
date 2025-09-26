@@ -8,3 +8,5 @@ ebpf:
 debug:
 	RUST_LOG=info sudo -E cargo run --bin syscall_ebpf -- -i enp2s0
 
+clean:
+	sudo -E cargo clean
