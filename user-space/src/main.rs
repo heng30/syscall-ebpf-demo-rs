@@ -13,12 +13,12 @@ async fn main() -> Result<(), anyhow::Error> {
 
     #[cfg(debug_assertions)]
     let mut bpf = Ebpf::load(include_bytes_aligned!(
-        "../../target/bpfel-unknown-none/release/syscall_ebpf-ebpf"
+        "../../target/bpfel-unknown-none/release/kernel-space"
     ))?;
 
     #[cfg(not(debug_assertions))]
     let mut bpf = Ebpf::load(include_bytes_aligned!(
-        "../../target/bpfel-unknown-none/release/syscall_ebpf-ebpf"
+        "../../target/bpfel-unknown-none/release/kernel-space"
     ))?;
 
     if let Err(e) = EbpfLogger::init(&mut bpf) {

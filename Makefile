@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-all: ebpf debug
+all: kernel_space user_space
 
-ebpf:
-	cd syscall_ebpf-ebpf && cargo build --release -Z build-std=core --bin syscall_ebpf-ebpf
+kernel_space:
+	cd kernel-space && cargo build --release -Z build-std=core --bin kernel-space
 
-debug:
-	RUST_LOG=info sudo -E cargo run --bin syscall_ebpf -- -i enp2s0
+user_space:
+	RUST_LOG=info sudo -E cargo run --bin user-space -- -i enp2s0
 
 clean:
 	sudo -E cargo clean

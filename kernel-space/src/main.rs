@@ -34,21 +34,18 @@ fn increment_syscall_count(ctx: &ProbeContext, syscall_id: u32) {
 
 #[kprobe]
 pub fn read_counter(ctx: ProbeContext) -> u32 {
-    // Use '0' as an arbitrary ID for the 'read' syscall
     increment_syscall_count(&ctx, 0);
     0
 }
 
 #[kprobe]
 pub fn write_counter(ctx: ProbeContext) -> u32 {
-    // Use '1' as an arbitrary ID for the 'write' syscall
     increment_syscall_count(&ctx, 1);
     0
 }
 
 #[kprobe]
 pub fn open_counter(ctx: ProbeContext) -> u32 {
-    // Use '2' as an arbitrary ID for the 'open' syscall
     increment_syscall_count(&ctx, 2);
     0
 }
