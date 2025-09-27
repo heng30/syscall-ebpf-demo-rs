@@ -64,7 +64,7 @@
         shellHook = ''
           export PS1="($(basename $(pwd)))> ";
           alias ee=exit
-          cargo install bpf-linker --force
+          cargo install bpf-linker # --force
 
           echo "[INFO] ✨ Rust development environment with epbf engine support is ready!"
           echo "[INFO] 📦 Rust version: $(rustc --version)"

@@ -22,13 +22,13 @@ fn increment_syscall_count(ctx: &ProbeContext, syscall_id: u32) {
                 .unwrap_or_else(|_| ());
         }
 
-        // FIXME: runtime error, cause by `info!`
-        // info!(
-        //     ctx,
-        //     "Syscall {} called by PID {}",
-        //     syscall_id,
-        //     bpf_get_current_pid_tgid() >> 32
-        // );
+        #[cfg(debug_assertions)]
+        info!(
+            ctx,
+            "Syscall {} called by PID {}",
+            syscall_id,
+            bpf_get_current_pid_tgid() >> 32
+        );
     }
 }
 

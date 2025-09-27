@@ -11,12 +11,6 @@ use tokio::time::{self, Duration};
 async fn main() -> Result<(), anyhow::Error> {
     env_logger::init();
 
-    #[cfg(debug_assertions)]
-    let mut bpf = Ebpf::load(include_bytes_aligned!(
-        "../../target/bpfel-unknown-none/release/kernel-space"
-    ))?;
-
-    #[cfg(not(debug_assertions))]
     let mut bpf = Ebpf::load(include_bytes_aligned!(
         "../../target/bpfel-unknown-none/release/kernel-space"
     ))?;
